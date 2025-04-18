@@ -44,66 +44,65 @@
 <body>
 
   <h1>My Accessible Photo Gallery</h1>
+<div class="gallery">
+  <figure>
+    <img src="beach-sunset.jpg" alt="Sunset on the beach">
+    <figcaption>Beach Sunset</figcaption>
+  </figure>
+  <figure>
+    <img src="sunrise-view.jpg" alt="Sunrise view">
+    <figcaption>Sunrise</figcaption>
+  </figure>
+  <figure>
+    <img src="camp-fire.jpg" alt="Campfire burning at night">
+    <figcaption>Campfire</figcaption>
+  </figure>
+  <figure>
+    <img src="city-tour.jpg" alt="Walking tour of the city">
+    <figcaption>A tour of the city</figcaption>
+  </figure>
+  <figure>
+    <img src="road-trip.jpg" alt="Car on the road during a trip">
+    <figcaption>Road Trip</figcaption>
+  </figure>
+  <figure>
+    <img src="camping-night.jpg" alt="Tent set up under night sky">
+    <figcaption>Camping</figcaption>
+  </figure>
+</div>
 
-  <section class="gallery">
-    <figure>
-      <img src="beach-sunset.jpg" alt="Sunset on the beach">
-      <figcaption>Beach Sunset</figcaption>
-    </figure>
-    <figure>
-      <img src="sunrise-view.jpg" alt="Sunrise view">
-      <figcaption>Sunrise</figcaption>
-    </figure>
-    <figure>
-      <img src="camp-fire.jpg" alt="Campfire">
-      <figcaption>Campfire</figcaption>
-    </figure>
-     <figure>
-      <img src="city-tour.jpg" alt="Sunset on the beach">
-      <figcaption>A tour of the city</figcaption>
-    </figure> 
-    <figure>
-      <img src="road-trip.jpg" alt="Sunset on the beach">
-      <figcaption>RoadTrip</figcaption>
-    </figure> 
-    <figure>
-      <img src="camping-night.jpg" alt="Sunset on the beach">
-      <figcaption>Camping</figcaption>
-    </figure>
-  </section>
+ 
 
-  <script>
-    
-    window.onload = function () {
-      console.log("Gallery loaded!");
+<script>
+  
+  function makeGalleryAccessible() {
+    const images = document.querySelectorAll(".gallery img");
 
-      const figures = document.querySelectorAll("figure");
+    for (let i = 0; i < images.length; i++) {
+      images[i].setAttribute("tabindex", "0");
 
-      figures.forEach((figure, index) => {
-        
-        figure.setAttribute("tabindex", "0");
-
-        
-        figure.addEventListener("mouseover", () => {
-          figure.style.borderColor = "#007acc";
-        });
-
-        figure.addEventListener("mouseout", () => {
-          figure.style.borderColor = "transparent";
-        });
-
-        
-        figure.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            figure.style.backgroundColor = "#d0f0ff";
-            setTimeout(() => {
-              figure.style.backgroundColor = "";
-            }, 300);
-          }
-        });
+      images[i].addEventListener("mouseover", () => {
+        console.log("Mouse over image:", images[i].alt);
       });
-    };
-  </script>
+
+      images[i].addEventListener("mouseleave", () => {
+        console.log("Mouse left image:", images[i].alt);
+      });
+
+      images[i].addEventListener("focus", () => {
+        console.log("Image focused:", images[i].alt);
+      });
+
+      images[i].addEventListener("blur", () => {
+        console.log("Image lost focus:", images[i].alt);
+      });
+    }
+  }
+
+  // Call function on page load
+  window.onload = makeGalleryAccessible;
+</script>
+
 
 </body>
 </html>
