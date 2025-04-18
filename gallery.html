@@ -73,17 +73,17 @@
   </section>
 
   <script>
-    // Run when the page is fully loaded
+    
     window.onload = function () {
       console.log("Gallery loaded!");
 
       const figures = document.querySelectorAll("figure");
 
       figures.forEach((figure, index) => {
-        // Add tabindex for keyboard navigation
+        
         figure.setAttribute("tabindex", "0");
 
-        // Add mouseover and mouseout effects
+        
         figure.addEventListener("mouseover", () => {
           figure.style.borderColor = "#007acc";
         });
@@ -92,7 +92,7 @@
           figure.style.borderColor = "transparent";
         });
 
-        // Optional: Keyboard interaction (e.g., press Enter to highlight)
+        
         figure.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             figure.style.backgroundColor = "#d0f0ff";
